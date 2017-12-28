@@ -37,4 +37,31 @@
     [self.root enumerateNodesUsingBlock:block];
 }
 
+#pragma mark Debug
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Tree: %@\n%@",
+            [super description],
+            [self node:self.root debugDescriptionOnLevel:0]];
+}
+
+- (NSString *)node:(PDTNode *)node debugDescriptionOnLevel:(NSUInteger)level {
+    NSMutableString *string = nil;
+    unichar shift[level*2+1];
+    shift[0] = '|';
+    if (level > 0) {
+        for (NSUInteger idx = 1; idx < level*2; idx++) {
+            shift[idx] = '-';
+        }
+        shift[level*2] = ' ';
+    }
+    string = [NSMutableString stringWithCharacters:shift length:level*2+1];
+    [string appendFormat:@"%@\n", node];
+    NSUInteger next = level + 1;
+    for (PDTNode *child in node.children) {
+        [string appendString:[self node:child debugDescriptionOnLevel:next]];
+    }
+    return [string copy];
+}
+
 @end

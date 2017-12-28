@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PDTNode <T:id> : NSObject
 @property (nonatomic, readonly) T component;
 @property (nonatomic, readonly) NSArray<PDTNode *> *children;
-@property (nonatomic, weak, readonly) PDTNode *parent;
 
 - (instancetype)initWithComponent:(T)component;
 

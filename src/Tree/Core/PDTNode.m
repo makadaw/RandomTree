@@ -35,7 +35,6 @@
 
 - (void)addChildNode:(PDTNode *)node {
     if (node) {
-        node.parent = self;
         [self.mChildren addObject:node];
     }
 }
@@ -59,6 +58,12 @@
     for (PDTNode *child in children) {
         [child enumerateNodesUsingBlock:block];
     }
+}
+
+#pragma mark Debug
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@ (%@)", [super description], self.component];
 }
 
 @end

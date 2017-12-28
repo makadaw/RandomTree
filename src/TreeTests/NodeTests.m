@@ -25,11 +25,10 @@
     [super tearDown];
 }
 
-- (void)testNodeParent {
-    PDTNode *node = [[PDTNode alloc] initWithComponent:@"root"];
-    PDTNode *child = [[PDTNode alloc] initWithComponent:@"child"];
-    [node addChildNode:child];
-    XCTAssertEqualObjects(node, child.parent);
+- (void)testComponent {
+    NSArray *component = @[@(123)];
+    PDTNode *node = [[PDTNode alloc] initWithComponent:component];
+    XCTAssertEqualObjects(node.component, component);
 }
 
 @end
